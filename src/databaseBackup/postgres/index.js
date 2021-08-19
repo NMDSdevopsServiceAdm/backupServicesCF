@@ -17,11 +17,15 @@ const backupPostgres = async (service) => {
 
     console.info('Using pg_dump to dump ' + service.service_name);
 
-    const backup = await exec(`pg_dump ${cfService.credentials.uri} ${exportSchema} -F t -O -x -f backup.sql`);
+    const backup = await exec(`pg_dump ${cfService.credentials.uri} ${exportSchema} -O -x`);
 
     console.info('Service has been backed up');
 
-    return backup;
+    if (backup.stderr) {
+      throw new Error(backup.stderr);
+    }
+
+    return backup.stdout;
   } catch (error) {
     console.error(error);
     return error;

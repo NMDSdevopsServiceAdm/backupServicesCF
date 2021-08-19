@@ -1,13 +1,22 @@
 const Bree = require('bree');
 const config = require('../config');
 
-const scheduler = new Bree({
-  jobs: [
-    {
-      name: 'backup_databases',
-      cron: config.get('cron'),
+const jobs = [];
+config.get('services').forEach((service) => {
+  jobs.push({
+    name: 'backup_database',
+    // cron: service.cron,
+    interval: '1m',
+    worker: {
+      workerData: {
+        service,
+      },
     },
-  ],
+  });
+});
+
+const scheduler = new Bree({
+  jobs,
 });
 
 scheduler.start();

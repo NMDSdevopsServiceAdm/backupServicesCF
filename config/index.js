@@ -6,6 +6,13 @@ const fs = require('fs');
 const yaml = require('js-yaml');
 
 const schema = {
+  s3: {
+    bucket: {
+      doc: 'Bucket to upload the backups to',
+      default: 'sfctestbackups',
+      env: 'REPORTS_S3_BUCKET',
+    },
+  },
   services: {
     doc: 'A collection of CF services.',
     format: Array,

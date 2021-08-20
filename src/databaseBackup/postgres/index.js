@@ -17,7 +17,9 @@ const backupPostgres = async (service) => {
 
     console.info('Using pg_dump to dump ' + service.service_name);
 
-    const backup = await exec(`pg_dump ${cfService.credentials.uri} ${exportSchema} -O -x`);
+    const backup = await exec(
+      `/home/vcap/deps/0/apt/usr/lib/postgresql/13/bin/pg_dump ${cfService.credentials.uri} ${exportSchema} -O -x`,
+    );
 
     console.info('Service has been backed up');
 

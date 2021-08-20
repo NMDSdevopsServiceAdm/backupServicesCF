@@ -3,7 +3,10 @@ applications:
     memory: 1G
     disk_quota: 4GB
     instances: 1
-    buildpack: https://github.com/cloudfoundry/nodejs-buildpack.git#v1.7.31
+    buildpacks:
+      - https://github.com/cloudfoundry/apt-buildpack
+      - nodejs_buildpack
     services:
       - sfcstaging-db
-stack: cflinuxfs3
+    env:
+      PERL5LIB: /home/vcap/deps/0/apt/usr/lib/x86_64-linux-gnu:/home/vcap/deps/0/apt/usr/share/perl5/ # Not a fan of this

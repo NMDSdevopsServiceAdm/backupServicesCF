@@ -1,0 +1,12 @@
+---
+cleancache: true
+keys:
+  - https://www.postgresql.org/media/keys/ACCC4CF8.asc
+repos:
+  - deb https://apt.postgresql.org/pub/repos/apt/ bionic-pgdg main
+packages:
+  - postgresql-13
+  - postgresql-client-13
+  - perl
+  - libdbd-pg-perl
+  - libpq-dev

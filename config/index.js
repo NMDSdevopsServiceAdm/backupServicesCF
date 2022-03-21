@@ -6,6 +6,11 @@ const fs = require('fs');
 const yaml = require('js-yaml');
 
 const schema = {
+  pg_dumpLocation: {
+    doc: 'Where is pg_dump on disk',
+    default: '/home/vcap/deps/0/apt/usr/lib/postgresql/13/bin/pg_dump',
+    env: 'PG_DUMP_LOCATION',
+  },
   s3: {
     bucket: {
       doc: 'Bucket to upload the backups to',
